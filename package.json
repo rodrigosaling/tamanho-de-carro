@@ -3,6 +3,18 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "author": {
+    "name": "Rodrigo Saling"
+  },
+  "license": "MIT",
+  "description": "Um simples comparador visual entre as dimensões de carros.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rodrigosaling/tamanho-de-carro"
+  },
+  "bugs": {
+    "url": "https://github.com/rodrigosaling/tamanho-de-carro/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
