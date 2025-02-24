@@ -17,13 +17,10 @@ type CarDimensions = {
   height: number;
 };
 
-const HYUNDAI_HB20_HATCHBACK_2020_DIMENSIONS: CarDimensions = {
-  length: 3.94,
-  width: 1.72,
-  height: 1.47,
-};
-
-function generateCarCube(dimensions: CarDimensions) {
+function generateCarCube(
+  dimensions: CarDimensions,
+  color: THREE.ColorRepresentation,
+) {
   const geometry = new THREE.BoxGeometry(
     dimensions.length,
     dimensions.width,
@@ -35,7 +32,7 @@ function generateCarCube(dimensions: CarDimensions) {
     dimensions.height / 2,
   );
   const material = new THREE.MeshBasicMaterial({
-    color: 0x009900,
+    color,
     transparent: true,
     opacity: 0.25,
   });
@@ -49,7 +46,13 @@ function generateCarCube(dimensions: CarDimensions) {
   return cube;
 }
 
-scene.add(generateCarCube(HYUNDAI_HB20_HATCHBACK_2020_DIMENSIONS));
+const HYUNDAI_HB20_HATCHBACK_2020_DIMENSIONS: CarDimensions = {
+  length: 3.94,
+  width: 1.72,
+  height: 1.47,
+};
+
+scene.add(generateCarCube(HYUNDAI_HB20_HATCHBACK_2020_DIMENSIONS, 0x009900));
 
 const RENAULT_KARDIAN_2025_DIMENSIONS = {
   length: 4.119,
@@ -57,13 +60,19 @@ const RENAULT_KARDIAN_2025_DIMENSIONS = {
   height: 1.544,
 };
 
-scene.add(generateCarCube(RENAULT_KARDIAN_2025_DIMENSIONS));
+scene.add(generateCarCube(RENAULT_KARDIAN_2025_DIMENSIONS, 0x000099));
 
 camera.position.x = 0.5;
 camera.position.y = 0.5;
 camera.position.z = 10;
 
 scene.add(new THREE.AxesHelper(10));
+
+const geometryPlane = new THREE.PlaneGeometry(5, 5);
+const materialPlane = new THREE.MeshBasicMaterial({ color: 0xffffff });
+const plane = new THREE.Mesh(geometryPlane, materialPlane);
+plane.position.set(2.5, 2.5, 0);
+scene.add(plane);
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
